@@ -1,3 +1,4 @@
 pub mod fraction;
 pub mod m;
-pub mod balls;
+pub mod simplex;
+pub mod matrix;

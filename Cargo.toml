@@ -2,6 +2,7 @@
 name = "simplexsolver"
 version = "0.1.0"
 edition = "2018"
+default-run = "main"
 
 [lib]
 name = "simplexsolver"
@@ -10,4 +11,9 @@ name = "simplexsolver"
 
 [dependencies]
 "num" = "0.4.0"
+"num-traits" = "0.2.15"
 "matrix" = "0.22.0"
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
