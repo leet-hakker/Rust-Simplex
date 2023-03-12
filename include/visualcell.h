@@ -1,8 +1,9 @@
 #include <stdlib.h>
 
 extern const int BORDERPX;
-extern const int CELLWIDTH;
-extern const int CELLHEIGHT;
+extern const int CELL_W_TO_H_RATIO;
+// extern const int CELLWIDTH;
+// extern const int CELLHEIGHT;
 
 typedef struct VisualCell {
   int x;
@@ -10,6 +11,7 @@ typedef struct VisualCell {
   int x_dim;
   int y_dim;
   bool selected;
+  uint16_t bgcol;
   char *contents;
 } VisualCell;
 
