@@ -1,9 +1,14 @@
+#ifndef TABLEUX_H
+#define TABLEUX_H
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
 
 #include "../include/visualcell.h"
+#include "../include/fraction.h"
+#include "../include/m.h"
+#include "../include/matrix.h"
 
 const uint16_t ROWCOLBGCOLOUR = 0xdefb;
 
@@ -40,10 +45,12 @@ Tableux *new_tableux(uint8_t rows, uint8_t columns) {
     // Setting the first row and column to have a different background colour.
     for (int i=0; i < rows; i++) {
         tab->grid[i][0]->bgcol = ROWCOLBGCOLOUR;
+        tab->grid[i][0]->editable = true;
     }
 
     for (int i=0; i < columns; i++) {
         tab->grid[0][i]->bgcol = ROWCOLBGCOLOUR;
+        tab->grid[0][i]->editable = true;
     }
 
     // Setting the cursor
@@ -52,9 +59,11 @@ Tableux *new_tableux(uint8_t rows, uint8_t columns) {
 
     tab->grid[tab->cursor_y][tab->cursor_x]->selected = true;
 
-    // Important cell texts that won't change
+    // Important cell values that won't change
     tab->grid[0][0]->contents = "B.v.";
     tab->grid[0][columns-1]->contents = "Value";
+    tab->grid[0][0]->editable = false;
+    tab->grid[0][columns-1]->editable = false;
 
     return tab;
 }
@@ -89,3 +98,56 @@ void update_cursor(uint8_t cursor_x, uint8_t cursor_y, Tableux *tab) {
     tab->cursor_x = cursor_x;
     tab->cursor_y = cursor_y;
 }
+
+char **extract_row_names(Tableux *tab) {
+    char **row_names = calloc(tab->rows-1, sizeof(char*));
+    for (int i=1; i < tab->rows-1; i++) {
+        row_names[i-1] = malloc(3);
+        strcpy(row_names[i-1], tab->grid[i][0]->contents);
+    }
+
+    return row_names;
+}
+
+char **extract_column_names(Tableux *tab) {
+    char **column_names = calloc(tab->columns-1, sizeof(char*));
+    for (int i=1; i < tab->columns-1; i++) {
+        column_names[i-1] = malloc(3);
+        strcpy(column_names[i-1], tab->grid[0][i]->contents);
+    }
+    
+    return column_names;
+}
+
+BigM **extract_grid(Tableux *tab) {
+    BigM **grid = calloc(tab->rows-1, sizeof(BigM*));
+    for (int i=0; i < tab->rows-1; i++) {
+        grid[i] = calloc(tab->columns-1, sizeof(BigM));
+    }
+
+    for (int i=0; i < tab->rows-1; i++) {
+        for (int j=0; j < tab->columns-1; j++) {
+            grid[i][j] = new_BigM(new_fraction(atoi(tab->grid[i][j]->contents), 1), new_fraction(0, 1));
+        }
+    }
+
+    return grid;
+}
+
+Tableux *matrix_into_tableux(Matrix *mat, char **row_names, Tableux *tab) {
+    // Set row titles
+    for (int i=1; i < mat->rows; i++) {
+        tab->grid[i][0]->contents = row_names[i-1];
+    }
+
+    // Insert matrix data as strings
+    for (int i=1; i < mat->rows; i++) {
+        for (int j=1; j < mat->columns; j++) {
+            tab->grid[i][j]->contents = BigM_str(get(mat, i-1, j-1));
+        }
+    }
+
+    return tab;
+}
+
+#endif // TABLEUX_H

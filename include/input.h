@@ -1,9 +1,7 @@
+#ifndef INPUT_H
+#define INPUT_H
 #include <gint/keyboard.h>
 
-// 0: Up
-// 1: Down
-// 2: Left
-// 3: Right
-// 4: Cell edit change
-// 5: Nothing we care about
-uint8_t process_key(key_event_t key);
+void process_key_rowcol_stage(key_event_t key, uint8_t *cursor_x, uint8_t *cursor_y, Tableux *tab);
+void process_key_tableux_stage(key_event_t key, uint8_t *cursor_x, uint8_t *cursor_y, Tableux *tab);
+#endif

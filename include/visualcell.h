@@ -1,3 +1,5 @@
+#ifndef VISUALCELL_H
+#define VISUALCELL_H
 #include <stdlib.h>
 
 extern const int BORDERPX;
@@ -11,6 +13,8 @@ typedef struct VisualCell {
   int x_dim;
   int y_dim;
   bool selected;
+  bool editing;
+  bool editable;
   uint16_t bgcol;
   char *contents;
 } VisualCell;
@@ -18,3 +22,6 @@ typedef struct VisualCell {
 VisualCell *new_viscell(int x, int y, int x_dim, int y_dim, bool selected, char *contents);
 void free_viscell(VisualCell *cell);
 void draw_cell(VisualCell *cell);
+void draw_cell_contents(VisualCell *cell);
+
+#endif
