@@ -1,0 +1,19 @@
+Running suite(s): fraction
+72%: Checks: 18, Failures: 5, Errors: 0
+test_fraction.c:283:F:Core:test_fraction_divide:0: Assertion 'fraction_eq(result, expected)' failed
+test_fraction.c:135:F:Core:test_fraction_eq:0: Assertion 'fraction_eq(frac1, frac3)' failed
+test_fraction.c:170:F:Core:test_fraction_gt:0: Assertion '!fraction_gt(a, b)' failed
+test_fraction.c:61:F:Core:test_fraction_str:0: Assertion 'str2 == "-2/3"' failed: str2 == "-6/9", "-2/3" == "-2/3"
+test_fraction.c:100:F:Core:test_make_common_denominator:0: Assertion 'frac1.denominator == 8' failed: frac1.denominator == -8, 8 == 8
+
+PASS: test_fraction
+============================================================================
+Testsuite summary for Tests 0.1
+============================================================================
+# PASS:  1
+# SKIP:  0
+# XFAIL: 0
+# FAIL:  0
+# XPASS: 0
+# ERROR: 0
+============================================================================

@@ -3,8 +3,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "visualcell.h"
-#include "m.h"
+#include "bigm.h"
 #include "matrix.h"
+
+extern const uint8_t MAXROWS;
+extern const uint8_t MAXCOLS;
+extern const uint8_t MINROWS;
+extern const uint8_t MINCOLS;
 
 typedef struct Tableux {
     uint8_t rows;

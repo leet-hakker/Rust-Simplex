@@ -1,0 +1,3 @@
+Running suite(s): fraction
+100%: Checks: 18, Failures: 0, Errors: 0
+PASS test_fraction (exit status: 0)

@@ -14,7 +14,7 @@ typedef struct {
 
 Fraction simplify_fraction(Fraction* frac);
 Fraction new_fraction(int numerator, int denominator);
-char *fraction_str(Fraction frac);
+char *fraction_str(Fraction frac, char *str);
 Fraction fraction_zero();
 bool fraction_is_zero(Fraction frac);
 void make_common_denominator(Fraction* frac1, Fraction* frac2);

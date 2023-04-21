@@ -1,7 +1,7 @@
 #ifndef SIMPLEX_H
 #define SIMPLEX_H
 
-#include "m.h"
+#include "bigm.h"
 #include "matrix.h"
 
 bool isoptimal(Matrix *matrix);

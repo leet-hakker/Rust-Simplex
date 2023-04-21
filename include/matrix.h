@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
-#include "m.h"
+#include "bigm.h"
 
 typedef struct Matrix {
     int rows;

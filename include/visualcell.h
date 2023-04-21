@@ -1,6 +1,7 @@
 #ifndef VISUALCELL_H
 #define VISUALCELL_H
 #include <stdlib.h>
+#include <stdint.h>
 
 extern const int BORDERPX;
 extern const int CELL_W_TO_H_RATIO;
